@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Christmas Letter</title>
+  <style>
+    /* Variables for colors */
+    :root {
+      --background-gradient-start: #002b36; /* Dark greenish-blue */
+      --background-gradient-end: #8b0000; /* Dark red */
+      --background-stars: rgba(255, 255, 255, 0.3);
+      --primary-yellow: #ffd700;
+      --tree-green-top: #2e8b57;
+      --tree-green-bottom: #006400;
+      --letter-bg-start: #fff7e0;
+      --letter-bg-end: #ffeed3;
+      --text-color-dark: #333;
+      --ornament-red: #ff4040;
+      --ornament-blue: #6495ed;
+      --ornament-yellow: #ffcc00;
+      --ornament-purple: #9932cc;
+    }
+
+    /* Basic styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+      position: relative;
+      color: white;
+    }
+
+    /* Twinkling stars background */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, var(--background-stars) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+    }
+
+    /* Additional twinkling effect */
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, var(--background-stars) 1px, transparent 1px);
+      background-size: 150px 150px;
+      animation: twinkleBackground 2s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes twinkleBackground {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+    /* Snowflake animations */
+    .snowflake {
+      position: absolute;
+      top: -50px;
+      font-size: 1.5em;
+      color: white;
+      animation: snowfall 10s linear infinite;
+    }
+    .snowflake:nth-child(odd) {
+      animation-duration: 12s;
+      opacity: 0.7;
+    }
+    .snowflake:nth-child(even) {
+      animation-duration: 8s;
+      opacity: 0.9;
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    /* Letter container */
+    .letter-container {
+      text-align: center;
+      border: 4px solid var(--primary-yellow);
+      border-radius: 20px;
+      padding: 25px;
+      background: linear-gradient(145deg, var(--letter-bg-start), var(--letter-bg-end));
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-yellow) inset;
+      width: 90%;
+      max-width: 350px;
+      animation: glow 1.5s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-yellow) inset;
+      }
+      100% {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 40px var(--primary-yellow) inset;
+      }
+    }
+
+    /* SVG Tree styles */
+    .tree {
+      margin-bottom: 20px;
+    }
+
+    .tree .ornaments {
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Snowflakes -->
+  <div class="snowflake" style="left: 20%; animation-delay: 3s;">❄️</div>
+  <div class="snowflake" style="left: 40%; animation-delay: 6s;">❄</div>
+  <div class="snowflake" style="left: 60%; animation-delay: 4s;">❄️</div>
+  <div class="snowflake" style="left: 80%; animation-delay: 7s;">❄</div>
+
+  <!-- Letter content -->
+  <div class="letter-container">
+    <svg class="tree" width="120" height="200" viewBox="0 0 120 200" aria-hidden="true" focusable="false">
+      <!-- Tree Layers with Gradient -->
+      <defs>
+        <linearGradient id="treeGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--tree-green-top)" />
+          <stop offset="100%" stop-color="var(--tree-green-bottom)" />
+        </linearGradient>
+      </defs>
+      <polygon points="60,30 20,90 100,90" fill="url(#treeGradient)" />
+      <polygon points="60,60 30,120 90,120" fill="url(#treeGradient)" />
+      <polygon points="60,90 40,150 80,150" fill="url(#treeGradient)" />
+      
+      <!-- Tree Trunk -->
+      <rect x="55" y="150" width="10" height="30" fill="brown" />
+
+      <!-- Ornaments -->
+      <circle class="ornaments" cx="45" cy="80" r="4" fill="var(--ornament-red)" />
+      <circle class="ornaments" cx="75" cy="100" r="4" fill="var(--ornament-blue)" />
+      <circle class="ornaments" cx="60" cy="130" r="4" fill="var(--ornament-yellow)" />
+      <circle class="ornaments" cx="50" cy="110" r="4" fill="var(--ornament-purple)" />
+      <circle class="ornaments" cx="70" cy="80" r="4" fill="var(--ornament-red)" />
+      
+      <!-- Garland -->
+      <path d="M30,90 Q60,75 90,90" fill="none" stroke="gold" stroke-width="2" />
+      <path d="M40,120 Q60,105 80,120" fill="none" stroke="silver" stroke-width="2" />
+    </svg>
+
+    <h2 style="color: var(--tree-green-top);">Dear Mama and Papa,</h2>
+    <p style="font-size: 16px; color: var(--text-color-dark);">
+      <br>Merry Christmas! Thank you for all your hard work, love, and care. I am truly grateful to have you as my parents, and I hope that in the next life, you will be my parents again. Don't worry, all the hard work you've put in will not go to waste. I promise I will work hard and make you proud. I love you so much, and thank you for everything.<br>
+    </p>
+  </div>
+</body>
+</html>
